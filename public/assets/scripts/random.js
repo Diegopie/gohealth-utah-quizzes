@@ -1,4 +1,8 @@
 // * Global Variables
+const devMode = true;
+if (devMode) {
+  devTestSelect();
+}
 // score-cont
 let score = 0;
 let curQuest = 0;
@@ -25,7 +29,7 @@ const difValue = {
 };
 // ** Store API Res
 const quizRes = [];
-// I originally pushed the trivia api res to quizRes, rather than setting it equal to a variable like with trivia API. This meant I had to add [0] anytime I wanted to use the api res but this caused issus when I was trying to store quizRes in local storage and play the same quiz. It would keep adding an empty index. I solved it by doing what I should have from the start and sending trivAPi (stores api.res) so local storage, so it would behave the same way as doing an actual api call. It just more effort than I want to put in to fix it
+// I originally pushed the trivia api res to quizRes, rather than setting it equal to a variable like with trivia API. This meant I had to add [0] anytime I wanted to use the api res but this caused issus when I was trying to store quizRes in local storage and play the same quiz. It would keep adding an empty index. I solved it by doing what I should have from the start and sending trivAPi (stores api.res) to local storage, so it would behave the same way as doing an actual api call. It just more effort than I want to put in to fix it
 let trivApi;
 const parsedQuiz = [];
 
@@ -73,8 +77,28 @@ function testSelect() {
     parseRes();
   });
 }
+// ** Make API Req Directly to Their Site
+function devTestSelect() {
+  const url =
+    "https://opentdb.com/api.php?amount=" +
+    3 +
+    "&category=" +
+    15 +
+    "&difficulty=" +
+    "easy" +
+    "&type=multiple";
+  $.ajax({
+    url: url,
+    method: "GET",
+  }).then((res) => {
+    // :)  So, if I had stored res.results in a variable rather than push to an array to begin with, I would have had to deal with index 0 all the time
+    trivApi = res.results;
+    quizRes.push(res.results);
+    parseRes();
+  });
+}
 
-// ** parse text to make nonsense reaadable
+// ** parse text to make nonsense readable
 function decode(text) {
   const el = document.createElement("div");
   el.innerHTML = text;
@@ -184,15 +208,16 @@ function renderQuizBetter() {
 // ** Creates a Button That Shows Users Info and Can Load the Next Question
 function makeButt(value, answ) {
   // *** Append A Button To DOM
-  const nextCont = $("<article>")
-    .addClass("col-7 col-md-4")
-    .attr("id", "nxtBtn");
-  const result = $("<h3>").text(value);
-  const buttCont = $("<div>").addClass("row");
-  const butt = $("<button>").addClass("button nxt").text("Next");
-  buttCont.append(butt);
-  nextCont.append(result, buttCont);
-  $(".qa").append(nextCont);
+  const betterNextContainer = `
+    <article class="col-7 col-md-4 id="nxtBtn>
+        <h3>${value}</h3>
+        <div class="row">
+            <button class="button nxt"> Next </button>
+        </div>
+    <article>
+  `;
+
+  $(".qa").append(betterNextContainer);
   // *** If User is Wrong, Display the Correct Answer
   if (answ !== undefined) {
     const corCon = $("<article>").addClass("col-7 col-md-4");
