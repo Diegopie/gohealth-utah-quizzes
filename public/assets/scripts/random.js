@@ -154,6 +154,7 @@ function renderQuizBetter() {
   }
   // *** Variables to Create Quiz DOM
   const curQaArr = parsedQuiz[curQuest];
+  console.log(curQaArr);
   const contain = $("<article>").addClass("row cont qa");
   const queAnsCont = $("<article>").addClass("col-7 col-md-4");
   const question = $("<h3>").text(curQaArr.question);
@@ -191,7 +192,7 @@ function renderQuizBetter() {
       if (parseInt(userSelect) === curQaArr.correct) {
         $(event.target).css("background-color", "green");
         $("#answers").removeClass("check");
-        makeButt("Correct!");
+        makeButt("Correct!", null);
         score = score + 10;
         $("#score")[0].innerText = score;
       } else {
@@ -219,14 +220,16 @@ function makeButt(value, answ) {
 
   $(".qa").append(betterNextContainer);
   // *** If User is Wrong, Display the Correct Answer
-  if (answ !== undefined) {
-    const corCon = $("<article>").addClass("col-7 col-md-4");
-    const corTitle = $("<h4>").addClass("spacer").text("Correct Answer:");
-    const corAnsCont = $("<div>").addClass("row");
-    const corAns = $("<h5>").addClass("col cor-ans").text(answ);
-    corAnsCont.append(corAns);
-    corCon.append(corTitle, corAnsCont);
-    $(".qa").append(corCon);
+  if (answ !== null) {
+    const betterCorrectContainer = `
+      <article class="col-7 col-md-4">
+        <h4 class="spacer"> Correct Answer: </h4>
+        <div class="row">
+          <h5 class="col cor-ans">${answ}</h5>
+        </div>
+      </article>
+    `;
+    $(".qa").append(betterCorrectContainer);
   }
   // Increase the Value of curQuest So Next Question Will Load When User Clicks
   curQuest++;
