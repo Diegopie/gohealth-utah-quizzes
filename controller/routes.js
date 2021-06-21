@@ -12,23 +12,13 @@ router.get("", (req, res) => {
 });
 
 // working
-router.get("/play", (req, res) => {
-  res.render("play");
+router.get("/chapterQuiz", (req, res) => {
+  res.render("chapter-quiz");
 });
 
 // working
 router.get("/playRandom", (req, res) => {
   res.render("play-random");
-});
-
-// working
-router.get("/account", (req, res) => {
-  res.render("account");
-});
-
-// working
-router.get("/create", (req, res) => {
-  res.render("create");
 });
 
 module.exports = router;
