@@ -13,5 +13,5 @@ $(".chptr").click((e) => {
   const activeQuiz = e.target.parentElement.dataset.quiz;
   console.dir(e.target.parentElement.dataset.quiz);
   localStorage.setItem("activeQuiz", activeQuiz);
-  window.location.href = "/playRandom";
+  window.location.href = "/chapterQuiz";
 });

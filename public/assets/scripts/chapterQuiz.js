@@ -35,55 +35,45 @@ const chapterQuizzes = {
   ]
 };
 
+const createQuiz = (quiz) => {
+  switch (quiz) {
+    case "chptOne":
+      $("#title").text("Chapter One");
+      selectedQuiz = chapterQuizzes.chptOne;
+      console.log(selectedQuiz);
+      parseRes();
+      break;
+    default:
+      console.log("butts");
+  }
+};
+
 // * Global Variables
-const devMode = true;
-if (devMode) {
-  devTestSelect();
-}
-// score-cont
+// ** score-cont
 let score = 0;
 let curQuest = 0;
-let catSelect = false;
-let difSelect = false;
-let strQuestions;
 // ** Store User Selection for API Req
-let userCat;
-const catValue = {
-  Animals: 27,
-  Film: 11,
-  Games: 15,
-  Sports: 21,
-  Anime: 31,
-  Books: 10,
-  Music: 12,
-  Math: 19,
-};
-let userDif;
-const difValue = {
-  Easy: "easy",
-  Medium: "medium",
-  Hard: "hard",
-};
+
 // ** Store API Res
-const quizRes = [];
+let selectedQuiz;
 // I originally pushed the trivia api res to quizRes, rather than setting it equal to a variable like with trivia API. This meant I had to add [0] anytime I wanted to use the api res but this caused issus when I was trying to store quizRes in local storage and play the same quiz. It would keep adding an empty index. I solved it by doing what I should have from the start and sending trivAPi (stores api.res) to local storage, so it would behave the same way as doing an actual api call. It just more effort than I want to put in to fix it
 let trivApi;
 const parsedQuiz = [];
 
 // * Functions
-// ** Check Local Storage If User Wanted to Play a Quiz Again
-checkLocal();
-function checkLocal() {
-  const localQuiz = JSON.parse(localStorage.getItem("saved-quiz"));
+// ** Check Local Storage For User Selected Quiz
+(function checkLocal() {
+  const localQuiz = localStorage.getItem("activeQuiz");
   // Display Settings elements if local storage is empty
-  if (localQuiz === null) {
-    $("#settings").removeClass("hide");
+  if (localQuiz === undefined) {
+    window.location.href = "/";
     return;
   }
-  quizRes.push(localQuiz);
-  localStorage.removeItem("saved-quiz");
-  parseRes();
-}
+  console.log(localQuiz);
+  // localStorage.removeItem("activeQuiz");
+  createQuiz(localQuiz);
+  
+})();
 // ** Adds Class When User Click and API Option and Removes Class For Any Previous Click
 function userSelect(elem) {
   const path = elem.parentElement.children;
@@ -110,29 +100,7 @@ function testSelect() {
   }).then((res) => {
     // :)  So, if I had stored res.results in a variable rather than push to an array to begin with, I would have had to deal with index 0 all the time
     trivApi = res.results;
-    quizRes.push(res.results);
-    parseRes();
-  });
-}
-// ** Make API Req Directly to Their Site
-function devTestSelect() {
-  const url =
-    "https://opentdb.com/api.php?amount=" +
-    3 +
-    "&category=" +
-    15 +
-    "&difficulty=" +
-    "easy" +
-    "&type=multiple";
-  $.ajax({
-    url: url,
-    method: "GET",
-  }).then((res) => {
-    // :)  So, if I had stored res.results in a variable rather than push to an array to begin with, I would have had to deal with index 0 all the time
-    trivApi = res.results;
-    // console.log(res);
-    quizRes.push(res.results);
-    console.log(quizRes);
+    selectedQuiz.push(res.results);
     parseRes();
   });
 }
@@ -147,10 +115,10 @@ function decode(text) {
 
 // ** Parse API Res To Work Better With Updating the DOM and Store in parsedQuiz
 function parseRes() {
-  // *** Loop Through All Questions in QuizRes
-  for (let i = 0; i < quizRes[0].length; i++) {
+  // *** Loop Through All Questions in selectedQuiz
+  for (let i = 0; i < selectedQuiz.length; i++) {
     // *** Variables
-    const curQ = quizRes[0][i];
+    const curQ = selectedQuiz[i];
     const curA = [];
     let correctA;
     // *** Sort Questions into a Single Array of curA
@@ -337,40 +305,4 @@ function shuffleArray(array) {
 }
 
 // * Click Listeners
-// ** Store Value for Quiz Length
-$("#amnt-sbt").click((event) => {
-  event.preventDefault();
-  strQuestions = parseInt($("#amnt-val").val());
-  // console.log("How Many Q: " + strQuestions);
-  $("#amnt").addClass("hide");
-  $("#cat-cont").removeClass("hide");
-});
-// ** Store the Category A User Clicks
-$(".cat").click((event) => {
-  event.preventDefault();
-  userCat = event.target.innerText;
-  userSelect(event.target);
-  catSelect = true;
-  // console.log("User Category: ", userCat);
-});
 
-// ** Store User Difficulty
-$(".dif").click((event) => {
-  event.preventDefault();
-  userDif = event.target.innerText;
-  userSelect(event.target);
-  difSelect = true;
-  // console.log("User Difficulty: ", userDif);
-});
-
-$("#sub").click((event) => {
-  event.preventDefault();
-  if (!catSelect || !difSelect) {
-    $("#valText")[0].textContent = "Please Select a Category and Difficulty";
-    $("#validateModal").modal();
-    return;
-  }
-  $("#settings").addClass("hide");
-  $("#score-cont").removeClass("hide");
-  testSelect();
-});
