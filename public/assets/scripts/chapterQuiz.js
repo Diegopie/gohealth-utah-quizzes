@@ -59,6 +59,94 @@ const createQuiz = (quiz) => {
       console.log(selectedQuiz);
       parseRes();
       break;
+    case "chptTwo":
+      $("#title").text("Chapter Two");
+      selectedQuiz = chapterQuizzes.chptTwo;
+      maxScore = chapterQuizzes.chptTwo.length;
+      console.log(maxScore);
+      console.log(selectedQuiz);
+      parseRes();
+      break;
+    case "chptThree":
+      $("#title").text("Chapter Three");
+      selectedQuiz = chapterQuizzes.chptThree;
+      maxScore = chapterQuizzes.chptThree.length;
+      console.log(maxScore);
+      console.log(selectedQuiz);
+      parseRes();
+      break;
+    case "chptFour":
+      $("#title").text("Chapter Four");
+      selectedQuiz = chapterQuizzes.chptFour;
+      maxScore = chapterQuizzes.chptFour.length;
+      console.log(maxScore);
+      console.log(selectedQuiz);
+      parseRes();
+      break;
+    case "chptFive":
+      $("#title").text("Chapter Five");
+      selectedQuiz = chapterQuizzes.chptFive;
+      maxScore = chapterQuizzes.chptFive.length;
+      console.log(maxScore);
+      console.log(selectedQuiz);
+      parseRes();
+      break;
+    case "chptSix":
+      $("#title").text("Chapter Six");
+      selectedQuiz = chapterQuizzes.chptSix;
+      maxScore = chapterQuizzes.chptSix.length;
+      console.log(maxScore);
+      console.log(selectedQuiz);
+      parseRes();
+      break;
+    case "chptSeven":
+      $("#title").text("Chapter Seven");
+      selectedQuiz = chapterQuizzes.chptSeven;
+      maxScore = chapterQuizzes.chptSeven.length;
+      console.log(maxScore);
+      console.log(selectedQuiz);
+      parseRes();
+      break;
+    case "chptEight":
+      $("#title").text("Chapter Eight");
+      selectedQuiz = chapterQuizzes.chptEight;
+      maxScore = chapterQuizzes.chptEight.length;
+      console.log(maxScore);
+      console.log(selectedQuiz);
+      parseRes();
+      break;
+    case "chptNine":
+      $("#title").text("Chapter Nine");
+      selectedQuiz = chapterQuizzes.chptNine;
+      maxScore = chapterQuizzes.chptNine.length;
+      console.log(maxScore);
+      console.log(selectedQuiz);
+      parseRes();
+      break;
+    case "chptTen":
+      $("#title").text("Chapter Ten");
+      selectedQuiz = chapterQuizzes.chptTen;
+      maxScore = chapterQuizzes.chptTen.length;
+      console.log(maxScore);
+      console.log(selectedQuiz);
+      parseRes();
+      break;
+    case "chptEleven":
+      $("#title").text("Chapter Eleven");
+      selectedQuiz = chapterQuizzes.chptEleven;
+      maxScore = chapterQuizzes.chptEleven.length;
+      console.log(maxScore);
+      console.log(selectedQuiz);
+      parseRes();
+      break;
+    case "chptTwelve":
+      $("#title").text("Chapter Twelve");
+      selectedQuiz = chapterQuizzes.chptTwelve;
+      maxScore = chapterQuizzes.chptTwelve.length;
+      console.log(maxScore);
+      console.log(selectedQuiz);
+      parseRes();
+      break;
     default:
       console.log("butts");
   }
