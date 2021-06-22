@@ -1,5 +1,4 @@
 // * Data
-
 const chapterQuizzes = {
   chptOne: [
     // One
@@ -35,22 +34,10 @@ const chapterQuizzes = {
   ]
 };
 
-const createQuiz = (quiz) => {
-  switch (quiz) {
-    case "chptOne":
-      $("#title").text("Chapter One");
-      selectedQuiz = chapterQuizzes.chptOne;
-      console.log(selectedQuiz);
-      parseRes();
-      break;
-    default:
-      console.log("butts");
-  }
-};
-
 // * Global Variables
 // ** score-cont
 let score = 0;
+let maxScore;
 let curQuest = 0;
 // ** Store User Selection for API Req
 
@@ -61,6 +48,22 @@ let trivApi;
 const parsedQuiz = [];
 
 // * Functions
+// ** Use Switch Statement to Load in and Render Appropriate Quiz 
+const createQuiz = (quiz) => {
+  switch (quiz) {
+    case "chptOne":
+      $("#title").text("Chapter One");
+      selectedQuiz = chapterQuizzes.chptOne;
+      maxScore = chapterQuizzes.chptOne.length;
+      console.log(maxScore);
+      console.log(selectedQuiz);
+      parseRes();
+      break;
+    default:
+      console.log("butts");
+  }
+};
+
 // ** Check Local Storage For User Selected Quiz
 (function checkLocal() {
   const localQuiz = localStorage.getItem("activeQuiz");
@@ -74,38 +77,9 @@ const parsedQuiz = [];
   createQuiz(localQuiz);
   
 })();
-// ** Adds Class When User Click and API Option and Removes Class For Any Previous Click
-function userSelect(elem) {
-  const path = elem.parentElement.children;
-  for (let i = 0; i < path.length; i++) {
-    if ($(path[i]).hasClass("selected")) {
-      $(path[i]).removeClass("selected");
-    }
-  }
-  $(elem).addClass("selected");
-}
-// ** Make API Req Directly to Their Site
-function testSelect() {
-  const url =
-    "https://opentdb.com/api.php?amount=" +
-    strQuestions +
-    "&category=" +
-    catValue[userCat] +
-    "&difficulty=" +
-    difValue[userDif] +
-    "&type=multiple";
-  $.ajax({
-    url: url,
-    method: "GET",
-  }).then((res) => {
-    // :)  So, if I had stored res.results in a variable rather than push to an array to begin with, I would have had to deal with index 0 all the time
-    trivApi = res.results;
-    selectedQuiz.push(res.results);
-    parseRes();
-  });
-}
 
-// ** parse text to make nonsense readable
+
+// ** parse text to make nonsense readable (not really need in this cae but it's still cool 😅)
 function decode(text) {
   const el = document.createElement("div");
   el.innerHTML = text;
@@ -113,7 +87,7 @@ function decode(text) {
   return text;
 }
 
-// ** Parse API Res To Work Better With Updating the DOM and Store in parsedQuiz
+// ** Parse API Res To Work Better With Updating the DOM and Store in parsedQuiz { note: wholly unnecessary since I have full control on how to input the data, but it does the job 🤷‍♀️ }
 function parseRes() {
   // *** Loop Through All Questions in selectedQuiz
   for (let i = 0; i < selectedQuiz.length; i++) {
@@ -173,6 +147,7 @@ function renderQuizBetter() {
   ansCont.append(answers);
   queAnsCont.append(question, ansCont);
   contain.append(queAnsCont);
+  // *** Loop Through Length of Questions to Create Appropriate Amount of Containers
   for (let i = 0; i < curQaArr.answers.length; i++) {
     const curAns = $("<li>")
       // .text(curQaArr.answers[i])
@@ -200,8 +175,12 @@ function renderQuizBetter() {
         $(event.target).css("background-color", "green");
         $("#answers").removeClass("check");
         makeButt("Correct!", null);
-        score = score + 10;
-        $("#score")[0].innerText = score;
+        score = score + 1;
+        const scoreDivided = score / maxScore;
+        const scorePercentage = scoreDivided * 100;
+        const scoreString = scorePercentage.toString();
+        const renderScore = scoreString.substring(0,2);
+        $("#score")[0].innerText = renderScore + "%";
       } else {
         $(event.target).css("background-color", "red");
         $("#answers").removeClass("check");
