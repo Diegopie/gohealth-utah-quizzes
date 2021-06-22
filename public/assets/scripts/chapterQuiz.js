@@ -323,41 +323,25 @@ function saveQuiz() {
   const saveCont = $("<section>").addClass("row cont sv-cont");
   // *** Containers for Text and Append to saveCont
   const titlesCont = $("<article>").addClass("col-12");
-  const title = $("<h3>").text("Would You Like to Save This Quiz?");
-  const p = $("<p>").text(
-    "If you're not logged in, you must do so or create an account"
-  );
-  titlesCont.append(title, p);
+  const title = $("<h3>").text("Would you like to try again?");
+  titlesCont.append(title);
   saveCont.append(titlesCont);
   // *** Create Container for Buttons and Append to saveCont
   const submCont = $("<article>").addClass("row");
-  const butYes = $("<button>").addClass("button sv-yes").text("Yes");
-  const butNo = $("<button>").addClass("button sv-again").text("Play Again");
-  const butPlay = $("<button>").addClass("button sv-play").text("Play Another");
-  submCont.append(butYes, butNo, butPlay);
+  const butYes = $("<button>").addClass("button sv-home").text("Go Home");
+  const butNo = $("<button>").addClass("button sv-again").text("Try Again");
+  submCont.append(butYes, butNo);
   saveCont.append(submCont);
   // *** Append New Elements to DOM
   $("#quiz").append(saveCont);
   // *** Click Listeners for New Button
   // ?? Save Quiz Will Either Require a Login or Creating Account, data can be saved to local storage or sent to the db
-  $(".sv-yes").click((event) => {
-    if (localStorage.getItem("currentUserId")) {
-      event.preventDefault();
-      localStorage.setItem("saved-quiz", JSON.stringify(trivApi));
-      window.location.replace("/create");
-    } else {
-      localStorage.setItem("saved-quiz", JSON.stringify(trivApi));
-      $("#signUpModal").modal("show");
-    }
+  $(".sv-home").click((event) => {
+    event.preventDefault();
+    window.location.href = "/";
   });
   // Quiz Is Stored In Local Storage to Play Again
   $(".sv-again").click((event) => {
-    event.preventDefault();
-    localStorage.setItem("saved-quiz", JSON.stringify(trivApi));
-    location.reload();
-  });
-  // Page Reload To Create A New Quiz
-  $(".sv-play").click((event) => {
     event.preventDefault();
     location.reload();
   });
