@@ -225,7 +225,7 @@ function renderQuizBetter() {
   const curQaArr = parsedQuiz[curQuest];
   console.log(curQaArr);
   const contain = $("<article>").addClass("row cont qa");
-  const queAnsCont = $("<article>").addClass("col-7 col-md-4");
+  const queAnsCont = $("<article>").addClass("col-12");
   const question = $("<h3>").text(curQaArr.question);
   const ansCont = $("<div>").addClass("row");
   const answers = $("<ul>").addClass("check").attr("id", "answers");
