@@ -1,50 +1,15 @@
-// * Data
-const chapterQuizzes = {
-  chptOne: [
-    // One
-    {
-      question: "Cynthia paid a $700 annual premium for a business overhead expense policy that paid a monthly benefit of up to $4,000 for a benefit period of 6 months. When Evelyn became disabled she used the entire benefit for 3 months, which covered $8,000 of employee salaries, as well as $3,000 in rent and utilities. This means that the amount of the benefits which was reported as income equaled: ",
-      correct_answer: "$12,000",
-      incorrect_answers: [
-        "$3,000",
-        "$0",
-        "$8,000"
-      ]
-    },
-    // Two
-    {
-      question: "Cynthia paid a $700 annual premium for a business overhead expense policy that paid a monthly benefit of up to $4,000 for a benefit period of 6 months. When Evelyn became disabled she used the entire benefit for 3 months, which covered $8,000 of employee salaries, as well as $3,000 in rent and utilities. This means that the amount of the benefits which was reported as income equaled: ",
-      correct_answer: "$2,500 Monthly",
-      incorrect_answers: [
-        "$4,000 Monthly",
-        "$1,000 Monthly",
-        "$2,000 Monthly"
-      ]
-    },
-    // Three
-    {
-      question: "The Smith family has a $1,000 annual family deductible with a coinsurance provision of 80/20. The family's claims for the year are $200, $300, $400, $500, $300, and $300, totaling $2,000. The insurer is responsible for paying: ",
-      correct_answer: "$800",
-      incorrect_answers: [
-        "$2,200",
-        "$1,200",
-        "$1,600"
-      ]
-    },
-  ]
-};
+// console.log(chapterQuizzes);
 
 // * Global Variables
 // ** score-cont
 let score = 0;
 let maxScore;
 let curQuest = 0;
+let renderScore = 0;
 // ** Store User Selection for API Req
 
 // ** Store API Res
 let selectedQuiz;
-// I originally pushed the trivia api res to quizRes, rather than setting it equal to a variable like with trivia API. This meant I had to add [0] anytime I wanted to use the api res but this caused issus when I was trying to store quizRes in local storage and play the same quiz. It would keep adding an empty index. I solved it by doing what I should have from the start and sending trivAPi (stores api.res) to local storage, so it would behave the same way as doing an actual api call. It just more effort than I want to put in to fix it
-let trivApi;
 const parsedQuiz = [];
 
 // * Functions
@@ -264,10 +229,20 @@ function renderQuizBetter() {
         $("#answers").removeClass("check");
         makeButt("Correct!", null);
         score = score + 1;
+        console.log({score});
         const scoreDivided = score / maxScore;
+        console.log({scoreDivided});
         const scorePercentage = scoreDivided * 100;
+        
+        console.log({scorePercentage});
+        
+        
         const scoreString = scorePercentage.toString();
-        const renderScore = scoreString.substring(0,2);
+        if (scoreDivided < 1 ) {
+          renderScore = scoreString.substring(0,2);
+        } else {
+          renderScore = scoreString.substring(0,3);
+        }
         $("#score")[0].innerText = renderScore + "%";
       } else {
         $(event.target).css("background-color", "red");
@@ -318,7 +293,11 @@ function makeButt(value, answ) {
 // ** Prompt User If They WAnt to Play Again or Save the Quiz
 function saveQuiz() {
   // Update Final Score
-  $("#score-cont")[0].children[0].textContent = "Final Score: " + score;
+  $("#score-cont")[0].children[0].textContent = "Final Score: " + renderScore + "%";
+  $("#score-cont").removeClass("hide");
+
+  // *** Save Score to Local Storage
+  localStorage.setItem("chpt1", renderScore);
   // *** Create Container for User Options
   const saveCont = $("<section>").addClass("row cont sv-cont");
   // *** Containers for Text and Append to saveCont
