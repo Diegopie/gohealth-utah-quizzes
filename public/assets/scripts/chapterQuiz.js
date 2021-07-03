@@ -127,6 +127,7 @@ const createQuiz = (quiz) => {
   }
   console.log(localQuiz);
   // localStorage.removeItem("activeQuiz");
+  localStorage.removeItem("activeQuiz");
   createQuiz(localQuiz);
   
 })();

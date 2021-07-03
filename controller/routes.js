@@ -21,4 +21,9 @@ router.get("/playRandom", (req, res) => {
   res.render("play-random");
 });
 
+
+router.get("/about", (req, res) => {
+  res.render("about");
+});
+
 module.exports = router;

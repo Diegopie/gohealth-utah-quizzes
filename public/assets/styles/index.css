@@ -42,8 +42,27 @@ a:hover {
   /* justify-self: center; */
 }
 
+.footer {
+  justify-content: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 80%;
+  background-color:#F7931E;
+  color: white;
+  text-align: center;
+  margin-left: 6rem;
+  margin-right: 6rem;
+  border-radius: 3px;
+}
+
+.link {
+  color: #1ecbe1;
+  font-weight: bold;
+}
+
 .modals {
-  background-color: #2b2b2b;
+  background-color: #18A0B1;
 }
 /* Create spacing between containers */
 header {
