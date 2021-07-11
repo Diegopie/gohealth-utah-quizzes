@@ -50,14 +50,10 @@ a:hover {
 }
 
 .footer {
-  /* justify-content: center; */
-  /* position: absolute; */
   bottom: 0;
-  /* height: 2.5rem; */
+  align-items: center;
   text-align: center;
   margin-top: 3rem;
-  /* margin-left: 6rem;
-  margin-right: 6rem; */
   background-color:#F7931E;
   color: white;
   border-radius: 3px;
