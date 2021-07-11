@@ -125,8 +125,7 @@ const createQuiz = (quiz) => {
     window.location.href = "/";
     return;
   }
-  console.log(localQuiz);
-  // localStorage.removeItem("activeQuiz");
+  // console.log(localQuiz);
   localStorage.removeItem("activeQuiz");
   createQuiz(localQuiz);
   

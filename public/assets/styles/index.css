@@ -4,27 +4,25 @@ body {
   margin: 0px;
   padding: 0px;
 }
-/* 
-header {
-  display: flex;
-} */
-
-.title {
-  /* display: flex; */
-  /* align-items: center; */
-  text-align: center;
-}
-
-.chapter {
-  /* margin-left: 3rem;
-  margin-right: 3rem;
-  background-color: #F7931E; */
-}
 
 a { color: inherit; } 
 a:hover { 
   text-decoration: none; 
   cursor: pointer;  
+}
+
+
+.title {
+  text-align: center;
+}
+
+.page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+.content-wrap {
+  padding-bottom: 2.5 rem;
 }
 
 /* Gives background color for section/article containers and padding between them */
@@ -42,20 +40,6 @@ a:hover {
   /* justify-self: center; */
 }
 
-.footer {
-  justify-content: center;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 80%;
-  background-color:#F7931E;
-  color: white;
-  text-align: center;
-  margin-left: 6rem;
-  margin-right: 6rem;
-  border-radius: 3px;
-}
-
 .link {
   color: #1ecbe1;
   font-weight: bold;
@@ -64,7 +48,21 @@ a:hover {
 .modals {
   background-color: #18A0B1;
 }
-/* Create spacing between containers */
+
+.footer {
+  /* justify-content: center; */
+  /* position: absolute; */
+  bottom: 0;
+  /* height: 2.5rem; */
+  text-align: center;
+  margin-top: 3rem;
+  /* margin-left: 6rem;
+  margin-right: 6rem; */
+  background-color:#F7931E;
+  color: white;
+  border-radius: 3px;
+}
+
 header {
   margin-bottom: 8px;
 }
