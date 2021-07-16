@@ -188,44 +188,74 @@ const chapterQuizzes = {
         "100%"
       ]
     },
-    // Three
+    // Twenty
     {
-      question: "The Smith family has a $1,000 annual family deductible with a coinsurance provision of 80/20. The family's claims for the year are $200, $300, $400, $500, $300, and $300, totaling $2,000. The insurer is responsible for paying: ",
-      correct_answer: "$800",
+      question: "Choose the tax treatment that applies to individual disability income premiums and benefits: ",
+      correct_answer: "Premiums are not tax deductible/Benefits are not taxable as income",
       incorrect_answers: [
-        "$2,200",
-        "$1,200",
-        "$1,600"
+        "Premiums are tax deductible/ Benefits are taxable as income"
       ]
     },
-    // Three
+    // Twenty-one 
     {
-      question: "The Smith family has a $1,000 annual family deductible with a coinsurance provision of 80/20. The family's claims for the year are $200, $300, $400, $500, $300, and $300, totaling $2,000. The insurer is responsible for paying: ",
-      correct_answer: "$800",
+      question: "Sharon, age 64 is getting ready to file her taxes. Which of the following statements regarding the deductibility of her various, personally-owned health insurance policies is true?",
+      correct_answer: "If her deductible long-term care insurance premiums, her medical expense premiums, and her after-tax, out-of-pocket expenses total at least 10% of her income, the excess amount is tax deductible",
       incorrect_answers: [
-        "$2,200",
-        "$1,200",
-        "$1,600"
+        "If her medical expense premiums and out-of-pocket expenses total at least 7.5% of her income, the excess amount is tax deductible",
+        "If her disability income premiums and long-term care insurance costs total at least 10% of her income, the excess amount is tax deductible",
+        "If her medical expense premiums and out-of-pocket expenses total at least 10% of her income, they are all tax deductible"
       ]
     },
-    // Three
+    // Twenty-two
     {
-      question: "The Smith family has a $1,000 annual family deductible with a coinsurance provision of 80/20. The family's claims for the year are $200, $300, $400, $500, $300, and $300, totaling $2,000. The insurer is responsible for paying: ",
-      correct_answer: "$800",
+      question: "Victoria, age 62, calculated last year's gross income to be $60,000. When she totaled up the cost of individual Medical and Long-term Care insurance, as well as her various out-of-pocket medical costs, she discovered the total was $7,500, which meant she could deduct _______ from her taxable income.",
+      correct_answer: "$1,500",
       incorrect_answers: [
-        "$2,200",
-        "$1,200",
-        "$1,600"
+        "$7,500",
+        "$6,000",
+        "$3,000"
       ]
     },
-    // Three
+    // Twenty-three
     {
-      question: "The Smith family has a $1,000 annual family deductible with a coinsurance provision of 80/20. The family's claims for the year are $200, $300, $400, $500, $300, and $300, totaling $2,000. The insurer is responsible for paying: ",
-      correct_answer: "$800",
+      question: "Harry was hospitalized and in a coma for 6 months. When does proof of loss for this claim have to be submitted?",
+      correct_answer: "Within 2 years, covered under the contestable period",
       incorrect_answers: [
-        "$2,200",
-        "$1,200",
-        "$1,600"
+        "Anytime, since he was in a coma and obviously could not submit a claim",
+        "Within 1 year, unless he suffers legal incapacity",
+        "An executor would be appointed by the courts to handle the necessary paperwork"
+      ]
+    },
+    // Twenty-four
+    {
+      question: "A disability policy may contain a cash value benefit if it provides for a return of what percent of all premiums paid, less the claims incurred, by the time the insured attains age 65?",
+      correct_answer: "100%",
+      incorrect_answers: [
+        "50%",
+        "51%",
+        "75%"
+      ]
+    },
+    // Twenty-five
+    {
+      question: "Under the Legal Actions Mandatory Uniform Provision, an insured must wait at least _____ days after providing proof of loss before he or she can take legal action against the insurer.",
+      correct_answer: "60 Days",
+      incorrect_answers: [
+        "90 Days",
+        "180 Days",
+        "45 Days"
+      ]
+    }
+  ],
+  chptTwo: [
+    // One
+    {
+      question: "lorem ipsum",
+      correct_answer: "answer",
+      incorrect_answers: [
+        "wrongA",
+        "wrongB",
+        "wrongC"
       ]
     },
   ]

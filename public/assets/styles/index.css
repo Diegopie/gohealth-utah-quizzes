@@ -179,3 +179,7 @@ p {
 .selected {
   color: green;
 }
+
+.ans {
+  padding-top: 11px;
+}
